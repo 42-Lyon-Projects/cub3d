@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/14 19:20:29 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/14 19:42:02 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 		char *key;
 		char *value;
 		void *texture;
-		t_boolean is_set;
 	}	t_texture;
 
 	typedef struct s_loaded_textures
