@@ -12,9 +12,9 @@
 
 NAME = cub3D
 
-MAKE_MLX = make -C minilibx-linux
-MLX = minilibx-linux/libmlx_Linux.a
-MLX_FLAGS = -L./minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MAKE_MLX = make -C ./dependencies/minilibx-linux
+MLX = ./dependencies/minilibx-linux/libmlx_Linux.a
+MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a

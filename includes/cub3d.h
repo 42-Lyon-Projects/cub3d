@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 	#define CUB3D_H
 	#include "cub3d_structs.h"
-	#include "../minilibx-linux/mlx.h"
+	#include "../dependencies/minilibx-linux/mlx.h"
 
 	int	init_graphics_part(t_cub3d *game);
 	t_loaded_textures load_textures(t_cub3d *cub3d);
