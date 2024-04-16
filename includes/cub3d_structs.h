@@ -39,24 +39,24 @@
 
 	typedef struct s_location
 	{
-		double x;
-		double y;
+		double	x;
+		double	y;
 	} t_location;
 
 	typedef struct s_player
 	{
-		t_location location;
-		t_direction spawn_direction;
+		t_location	location;
+		t_direction	spawn_direction;
 	} t_player;
 
 	typedef struct s_map {
-		char *path;
-		char **map;
-		int width;
-		int height;
-		t_player player;
-		t_location exit;
-		t_boolean is_valid;
+		char		*path;
+		char		**map;
+		int			width;
+		int			height;
+		t_player	player;
+		t_location	exit;
+		t_boolean	is_valid;
 	} t_map;
 
 	typedef struct s_cub3d
