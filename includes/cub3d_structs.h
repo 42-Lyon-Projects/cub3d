@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/14 19:42:02 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/15 16:07:34 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 	#define CUB3D_STRUCT_H
 	#include "boolean.h"
 
+	typedef enum e_direction
+	{
+		NORTH,
+		EAST,
+		SOUTH,
+		WEST,
+		UNKNOWN
+	} t_direction;
+
 	typedef struct s_texture
 	{
-		char *key;
-		char *value;
-		void *texture;
+		char		*key;
+		void		*texture;
+		t_direction	direction;
 	}	t_texture;
 
 	typedef struct s_loaded_textures
 	{
-		t_texture north;
-		t_texture south;
-		t_texture east;
-		t_texture west;
+		t_texture					*current_texture;
+		struct s_loaded_textures	*next;
+		struct s_loaded_textures	*previous;
 	}	t_loaded_textures;
-
-	typedef enum e_direction
-	{
-		NORTH = 0,
-		EAST = 1,
-		SOUTH = 2,
-		WEST = 3
-	} t_direction;
 
 	typedef struct s_location
 	{
@@ -61,7 +61,7 @@
 
 	typedef struct s_cub3d
 	{
-		t_loaded_textures	textures;
+		t_loaded_textures	*textures;
 		int					floor_color;
 		int					ceiling_color;
 

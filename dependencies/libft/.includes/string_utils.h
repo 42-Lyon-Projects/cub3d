@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 04:22:35 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/14 19:23:27 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/15 11:27:56 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ size_t			ft_str_tab_len(char **tab);
 
 void			ft_bzero(void *s, size_t n);
 int				ft_endwith(char *src, char *pattern);
+
 
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 

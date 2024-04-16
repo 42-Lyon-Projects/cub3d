@@ -20,12 +20,11 @@ MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
 
 FILES = main.c	\
-		texture_parser.c	\
-		location_utils.c	\
 		errors_handler.c	\
 		parser_utils.c		\
-		loader.c			\
-		graphics_utils.c
+		color_utils.c		\
+		graphics_utils.c	\
+		texture_utils.c
 BUILD_DIRECTORY = ./build/
 
 CC = gcc
@@ -34,7 +33,7 @@ FLAGS = -c -Wall -Wextra -Werror -g3 -MD
 
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
-$(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT)
+$(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT) $(MLX)
 	@NEED_LINK=0; \
 	for file in $(OBJS) $(LIBFT); do \
 		if [ $$file -nt $(NAME) ]; then \
@@ -43,11 +42,13 @@ $(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT)
 		fi; \
 	done; \
 	if [ ! -f $(NAME) ] || [ $$NEED_LINK -eq 1 ]; then \
-		$(MAKE_MLX)
 		$(CC) $(OBJS) $(LIBFT) $(MLX_FLAGS) -o $(NAME); \
 	else \
 		echo "Nothing to be done for '$@'"; \
 	fi
+
+$(MLX):
+	$(MAKE_MLX)
 
 $(LIBFT):
 	$(MAKE_LIBFT)
@@ -57,8 +58,8 @@ $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):
-	mkdir -p $(BUILD_DIRECTORY)utils	\
-	$(BUILD_DIRECTORY)parsing
+	mkdir -p $(BUILD_DIRECTORY)
+
 all : $(NAME)
 
 clean :
@@ -68,7 +69,7 @@ clean :
 
 fclean : clean
 	$(MAKE_LIBFT) fclean
-	$(MAKE_MLX) fclean
+	$(MAKE_MLX) clean
 	$(RM) $(NAME)
 
 re : fclean all
