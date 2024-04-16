@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "libft.h"
+#include "../../includes/cub3d.h"
+#include "../../dependencies/libft/.includes/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 

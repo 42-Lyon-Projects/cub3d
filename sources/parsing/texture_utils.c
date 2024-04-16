@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "string_utils.h"
+#include "../../includes/cub3d.h"
+#include "../../dependencies/libft/.includes/string_utils.h"
 #include <stdlib.h>
 
 t_direction	get_direction_from_string(char *key)

@@ -6,15 +6,13 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 10:22:09 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:51:14 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-
 
 int main(int argc, char **argv)
 {
