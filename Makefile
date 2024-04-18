@@ -21,10 +21,11 @@ LIBFT = ./dependencies/libft/build/libft.a
 
 FILES = main.c	\
 		errors_handler.c	\
-		parser_utils.c		\
-		color_utils.c		\
+		parsing/parser_utils.c		\
+		parsing/color_utils.c		\
 		graphics_utils.c	\
-		texture_utils.c
+		parsing/texture_utils.c \
+		parsing/map_validator.c
 BUILD_DIRECTORY = ./build/
 
 CC = gcc
@@ -58,7 +59,7 @@ $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):
-	mkdir -p $(BUILD_DIRECTORY)
+	mkdir -p $(BUILD_DIRECTORY)/parsing
 
 all : $(NAME)
 

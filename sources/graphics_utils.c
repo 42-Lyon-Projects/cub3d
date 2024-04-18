@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 10:39:00 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:43:12 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "cub3d.h"
@@ -56,14 +56,14 @@ static void add_texture(t_loaded_textures **textures, t_texture *texture)
 
 static void load_textures(t_cub3d *cub3d, int index)
 {
-	int			fd;
 	char		*line;
 	char		*key;
 	char		*value;
 
-	fd = open(cub3d->map.path, O_RDONLY);
-	line = get_next_line(fd);
-	cub3d->textures = NULL;
+	cub3d->map.fd = open(cub3d->map.path, O_RDONLY);
+	if (cub3d->map.fd == -1)
+		return (printf("Error\n -> Can't open file.\n"), free_and_exit(cub3d));
+	line = get_next_line(cub3d->map.fd);
 	while (line != NULL)
 	{
 		key = get_line_key(line);
@@ -73,22 +73,21 @@ static void load_textures(t_cub3d *cub3d, int index)
 		free(line);
 		free(key);
 		free(value);
-		line = get_next_line(fd);
+		if (textures_has_correctly_loaded(cub3d))
+			break;
+		line = get_next_line(cub3d->map.fd);
 	}
 	if (index != 4 || !textures_has_correctly_loaded(cub3d))
-		return (printf("Error \n -> Invalid texture\n"), free(line), close(fd), free_and_exit(cub3d));
-	return (close(fd), free(line));
+		return (printf("Error \n -> Invalid texture\n"), close(cub3d->map.fd), free_and_exit(cub3d));
 }
 static void load_colors(t_cub3d *cub3d, int index)
 {
-	int			fd;
 	char		*line;
 	char		*key;
 	char		*value;
 
-	fd = open(cub3d->map.path, O_RDONLY);
-	line = get_next_line(fd);
-	while (line != NULL)
+	line = get_next_line(cub3d->map.fd);
+	while (line != NULL && (cub3d->ceiling_color == -1 || cub3d->floor_color == -1))
 	{
 		key = get_line_key(line);
 		value = get_line_value(line);
@@ -97,18 +96,20 @@ static void load_colors(t_cub3d *cub3d, int index)
 		free(line);
 		free(key);
 		free(value);
-		line = get_next_line(fd);
+		if (cub3d->ceiling_color != -1 && cub3d->floor_color != -1)
+			break;
+		line = get_next_line(cub3d->map.fd);
 	}
 	if (index != 2)
-		return (printf("Error \n -> Invalid color key\n"), free(line), close(fd), free_and_exit(cub3d));
+		return (printf("Error \n -> Invalid color key\n"), close(cub3d->map.fd), free_and_exit(cub3d));
 	if (cub3d->ceiling_color == -1 || cub3d->floor_color == -1)
-		return (printf("Error\n -> Invalid colors\n"), free(line), close(fd), free_and_exit(cub3d));
-	return (close(fd), free(line));
+		return (printf("Error\n -> Invalid colors\n"), close(cub3d->map.fd), free_and_exit(cub3d));
 }
 
 int init_graphics_part(t_cub3d *cub3d)
 {
 	cub3d->mlx = mlx_init();
+	cub3d->map.fd = -1;
 	if (!cub3d->mlx)
 		return (-1);
 	cub3d->textures = NULL;
@@ -120,6 +121,7 @@ int init_graphics_part(t_cub3d *cub3d)
 	printf("Loading colors...\n");
 	load_colors(cub3d, 0);
 	printf("Colors loaded\n");
+
 
 	//cub3d->window = mlx_new_window(cub3d->mlx, 128 * 10,128 *10, "Cub3d");
 	//mlx_loop(cub3d->mlx);

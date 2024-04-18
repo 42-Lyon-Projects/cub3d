@@ -6,9 +6,17 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 10:52:35 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:14:03 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CUB3D_MAX_LINES
+	#define CUB3D_MAX_LINES 200
+#endif
+
+#ifndef CUB3D_MAX_LINES_LENGTH
+	#define CUB3D_MAX_LINES_LENGTH 200
+#endif
 
 #ifndef CUB3D_H
 	#define CUB3D_H
@@ -27,5 +35,7 @@
 	void				load_color(t_cub3d *cube, char *key, char *value);
 	char				*get_line_key(char *line);
 	char				*get_line_value(char *line);
+	char **ft_floodfill(char **map, char *allowed, char replacer, t_location start_at);
+	void				parse_map(t_cub3d *cub3d);
 
 #endif
