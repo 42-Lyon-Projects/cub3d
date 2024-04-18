@@ -19,13 +19,16 @@ MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
 
-FILES = main.c	\
-		errors_handler.c	\
+FILES = main.c						\
+		errors_handler.c			\
 		parsing/parser_utils.c		\
 		parsing/color_utils.c		\
-		graphics_utils.c	\
-		parsing/texture_utils.c \
-		parsing/map_validator.c
+		graphics_utils.c			\
+		parsing/texture_utils.c		\
+		parsing/map_parser.c		\
+		utils/ft_add_to_2d_array.c	\
+		utils/direction_utils.c		\
+		utils/ft_copy_2d_array.c
 BUILD_DIRECTORY = ./build/
 
 CC = gcc
@@ -58,7 +61,7 @@ $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):
-	mkdir -p $(BUILD_DIRECTORY)/parsing
+	mkdir -p $(BUILD_DIRECTORY)/parsing $(BUILD_DIRECTORY)/utils
 
 all : $(NAME)
 

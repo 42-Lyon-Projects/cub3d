@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-#include "../../dependencies/libft/.includes/libft.h"
+#include "cub3d.h"
+#include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -59,57 +59,28 @@ char	*get_line_value(char *line)
 	return (free(tmp), value);
 }
 
-static void load_map_dimensions(t_cub3d *cub3d)
+void	load_file_content(t_cub3d *cub3d)
 {
 	int		fd;
-	size_t	height;
-	size_t	max_width;
 	char	*line;
+	char	**content;
+	char	**tmp;
 
-	cub3d->map.map_height = -1;
-	cub3d->map.map_width = -1;
 	fd = open(cub3d->map.path, O_RDONLY);
 	if (fd == -1)
 		return ;
+	content = ft_calloc(1, sizeof(char *));
+	if (!content)
+		return (close(fd), (void) \
+			printf("Error\n -> Can't allocate memory.\n"));
 	line = get_next_line(fd);
-	height = 0;
-	max_width = 0;
-	while (line != NULL && ++height)
+	while (line)
 	{
-		if (ft_strlen(line) > max_width && ft_strlen(line) > 1)
-			max_width = ft_strlen(line);
+		tmp = ft_add_to_2d_array(content, ft_strtrim(line, "\n"));
+		free(content);
+		content = tmp;
 		free(line);
 		line = get_next_line(fd);
 	}
-	free(line);
-	close(fd);
-	cub3d->map.map_height = height;
-	cub3d->map.map_width = max_width;
-}
-
-void	load_map(t_cub3d *cub3d)
-{
-	int		index;
-	char	*line;
-	char	**map;
-	char	*tmp;
-
-	load_map_dimensions(cub3d);
-	map = ft_calloc((cub3d->map.map_height), sizeof(char *));
-	if (!map)
-		return ;
-	index = 0;
-	line = get_next_line(cub3d->map.fd);
-	while (line != NULL)
-	{
-		tmp = ft_strtrim(line, "\n");
-		if (ft_strlen(tmp) > 0)
-			map[index++] = ft_strdup(tmp);
-		free(tmp);
-		free(line);
-		line = get_next_line(cub3d->map.fd);
-	}
-	free(line);
-	close(cub3d->map.fd),
-	cub3d->map.map = map;
+	cub3d->file_content = content;
 }

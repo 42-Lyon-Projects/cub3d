@@ -10,14 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_MAX_LINES
-	#define CUB3D_MAX_LINES 200
-#endif
-
-#ifndef CUB3D_MAX_LINES_LENGTH
-	#define CUB3D_MAX_LINES_LENGTH 200
-#endif
-
 #ifndef CUB3D_H
 	#define CUB3D_H
 	#include "cub3d_structs.h"
@@ -28,6 +20,7 @@
 	void				destroy_textures(t_cub3d *cub3d);
 	void				free_and_exit(t_cub3d *cub3d);
 	t_loaded_textures	*get_texture_by_direction(t_cub3d *cub3d, t_direction direction);
+	t_direction			get_texture_direction_from_string(char *key);
 	t_direction			get_direction_from_string(char *key);
 	t_boolean			textures_has_correctly_loaded(t_cub3d *cub3d);
 	t_boolean			key_is_color(char *key);
@@ -35,7 +28,9 @@
 	void				load_color(t_cub3d *cube, char *key, char *value);
 	char				*get_line_key(char *line);
 	char				*get_line_value(char *line);
-	void				load_map(t_cub3d *cub3d);
 	t_boolean			map_is_valid(t_cub3d *cub3d);
-
+	char **ft_add_to_2d_array(char **twod_array, char *line);
+	char **ft_copy_2d_array(char **src);
+	void load_file_content(t_cub3d *cub3d);
+	void load_map(t_cub3d *cub3d, int value);
 #endif

@@ -52,10 +52,8 @@
 
 	typedef struct s_map {
 		char			*path;
-		int				fd;
 		char			**map;
 		long long		map_height;
-		long long		map_width;
 		t_player		player;
 		t_location		exit;
 		t_boolean		is_valid;
@@ -63,6 +61,7 @@
 
 	typedef struct s_cub3d
 	{
+		char				**file_content;
 		t_loaded_textures	*textures;
 		int					floor_color;
 		int					ceiling_color;

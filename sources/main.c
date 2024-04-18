@@ -14,56 +14,39 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string_utils.h>
 
-static void print_2D_map(char **map)
+int	main(int argc, char **argv)
 {
-	int i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-
-int main(int argc, char **argv)
-{
-	t_cub3d	game;
+	t_cub3d	cub3d;
 	int		return_state;
+	int		value;
 
 	if (argc < 2)
 		return (printf("Error\n -> Invalid number of arguments.\n"), 0);
 	return_state = handle_file_error(argv);
 	if (return_state < 0)
 		return (0);
-	game.map.path = argv[1];
-	int value = init_graphics_part(&game);
+	cub3d.map.path = argv[1];
+	cub3d.map.map = NULL;
+	load_file_content(&cub3d);
+	value = init_graphics_part(&cub3d);
 	if (value == -1)
 		return (printf("Error\n -> Can't initialize mlx.\n"), 0);
-	load_map(&game);
-	if (!map_is_valid(&game))
-		return (printf("Error\n -> Invalid map.\n"), free_and_exit(&game), 0);
-	//print_2D_map(ft_floodfill(game.map.map, "10?", 'F', (t_location){1, 1}));
-
-	free_and_exit(&game);
+	load_map(&cub3d, value);
+	if (!map_is_valid(&cub3d))
+		return (printf("Error\n -> Invalid map.\n"), free_and_exit(&cub3d), 0);
+	free_and_exit(&cub3d);
 }
 
-void free_and_exit(t_cub3d *cub3d)
+void	free_and_exit(t_cub3d *cub3d)
 {
-	int index;
-
-	if (cub3d->map.fd != -1)
-		close(cub3d->map.fd);
+	if (cub3d->file_content != NULL)
+		ft_free_split(cub3d->file_content);
+	if (cub3d->map.map != NULL)
+		ft_free_split(cub3d->map.map);
 	destroy_textures(cub3d);
 	mlx_destroy_display(cub3d->mlx);
 	free(cub3d->mlx);
-	index = 0;
-	while (cub3d->map.map[index])
-	{
-		free(cub3d->map.map[index]);
-		index++;
-	}
-	free(cub3d->map.map);
 	exit(0);
 }

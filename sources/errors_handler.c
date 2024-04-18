@@ -36,10 +36,10 @@ int	handle_file_error(char *argv[])
 	return (1);
 }
 
-t_boolean textures_has_correctly_loaded(t_cub3d *cub3d)
+t_boolean	textures_has_correctly_loaded(t_cub3d *cub3d)
 {
-	t_loaded_textures *tmp;
-	int index;
+	t_loaded_textures	*tmp;
+	int					index;
 
 	tmp = cub3d->textures;
 	index = 0;
@@ -54,4 +54,3 @@ t_boolean textures_has_correctly_loaded(t_cub3d *cub3d)
 		return (_false);
 	return (_true);
 }
-

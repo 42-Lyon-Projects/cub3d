@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
-#include "../../dependencies/libft/.includes/string_utils.h"
+#include "cub3d.h"
+#include "string_utils.h"
 #include <stdlib.h>
 
-t_direction	get_direction_from_string(char *key)
+t_direction	get_texture_direction_from_string(char *key)
 {
-	if (ft_strncmp(key, "NO", 2) || ft_strncmp(key, "N", 1))
+	if (ft_str_equals(key, "NO"))
 		return (NORTH);
-	if (ft_strncmp(key, "SO", 2) || ft_strncmp(key, "S", 1))
+	if (ft_str_equals(key, "SO"))
 		return (SOUTH);
-	if (ft_strncmp(key, "WE", 2) || ft_strncmp(key, "W", 1))
+	if (ft_str_equals(key, "WE"))
 		return (WEST);
-	if (ft_strncmp(key, "EA", 2) || ft_strncmp(key, "E", 1))
+	if (ft_str_equals(key, "EA"))
 		return (EAST);
 	return (UNKNOWN);
 }
@@ -36,7 +36,8 @@ t_loaded_textures	*get_texture_by_direction(t_cub3d *cub3d, t_direction directio
 		return (NULL);
 	while (current_texture != NULL)
 	{
-		if (current_texture->current_texture->direction == direction && current_texture->current_texture->texture != NULL)
+		if (current_texture->current_texture->direction == direction \
+			&& current_texture->current_texture->texture != NULL)
 			return (current_texture);
 		if (current_texture->next != NULL)
 			current_texture = current_texture->next;
@@ -69,4 +70,3 @@ void	destroy_textures(t_cub3d *cub3d)
 		tmp = next;
 	}
 }
-

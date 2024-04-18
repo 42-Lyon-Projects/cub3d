@@ -33,7 +33,7 @@ static t_boolean	str_is_numeric(char *value)
 			return (_false);
 		index++;
 	}
-	return _true;
+	return (_true);
 }
 
 t_boolean	color_value_is_valid(char *value)
@@ -62,19 +62,20 @@ t_boolean	color_value_is_valid(char *value)
 	return (ft_free_split(colors), _true);
 }
 
-static int load_trgb(int t, int r, int g, int b)
+static int	load_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-void load_color(t_cub3d *cube, char *key, char *value)
+void	load_color(t_cub3d *cube, char *key, char *value)
 {
 	char	**colors;
 	int		color;
 	char	*tmp;
 
 	colors = ft_split(value, ',');
-	color = load_trgb(0, ft_atoi(colors[0]), ft_atoi(colors[1]), ft_atoi(colors[2]));
+	color = load_trgb(0, ft_atoi(colors[0]), \
+		ft_atoi(colors[1]), ft_atoi(colors[2]));
 	tmp = ft_strtrim(key, " 	\n");
 	if (ft_str_equals(tmp, "F"))
 		cube->floor_color = color;
