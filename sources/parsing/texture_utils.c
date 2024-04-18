@@ -16,13 +16,13 @@
 
 t_direction	get_direction_from_string(char *key)
 {
-	if (ft_str_equals(key, "NO"))
+	if (ft_strncmp(key, "NO", 2) || ft_strncmp(key, "N", 1))
 		return (NORTH);
-	if (ft_str_equals(key, "SO"))
+	if (ft_strncmp(key, "SO", 2) || ft_strncmp(key, "S", 1))
 		return (SOUTH);
-	if (ft_str_equals(key, "WE"))
+	if (ft_strncmp(key, "WE", 2) || ft_strncmp(key, "W", 1))
 		return (WEST);
-	if (ft_str_equals(key, "EA"))
+	if (ft_strncmp(key, "EA", 2) || ft_strncmp(key, "E", 1))
 		return (EAST);
 	return (UNKNOWN);
 }

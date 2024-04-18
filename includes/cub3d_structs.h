@@ -13,6 +13,7 @@
 #ifndef CUB3D_STRUCT_H
 	#define CUB3D_STRUCT_H
 	#include "boolean.h"
+	#include <stddef.h>
 
 	typedef enum e_direction
 	{
@@ -50,12 +51,14 @@
 	} t_player;
 
 	typedef struct s_map {
-		char		*path;
-		int			fd;
-		char		**map;
-		t_player	player;
-		t_location	exit;
-		t_boolean	is_valid;
+		char			*path;
+		int				fd;
+		char			**map;
+		long long		map_height;
+		long long		map_width;
+		t_player		player;
+		t_location		exit;
+		t_boolean		is_valid;
 	} t_map;
 
 	typedef struct s_cub3d

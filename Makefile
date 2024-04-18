@@ -30,7 +30,7 @@ BUILD_DIRECTORY = ./build/
 
 CC = gcc
 
-FLAGS = -c -Wall -Wextra -Werror -g3 -MD
+FLAGS = -c -g3 -MD
 
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
@@ -55,7 +55,6 @@ $(LIBFT):
 	$(MAKE_LIBFT)
 
 $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
-	mkdir -p minilibx-linux
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):

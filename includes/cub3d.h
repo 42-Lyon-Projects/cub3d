@@ -35,7 +35,7 @@
 	void				load_color(t_cub3d *cube, char *key, char *value);
 	char				*get_line_key(char *line);
 	char				*get_line_value(char *line);
-	char **ft_floodfill(char **map, char *allowed, char replacer, t_location start_at);
-	void				parse_map(t_cub3d *cub3d);
+	void				load_map(t_cub3d *cub3d);
+	t_boolean			map_is_valid(t_cub3d *cub3d);
 
 #endif

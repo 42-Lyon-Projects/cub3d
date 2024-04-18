@@ -9,56 +9,82 @@
 /*   Updated: 2024/04/16 16:15:47 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
+
 #include "cub3d.h"
 #include <stdlib.h>
 #include "string_utils.h"
 
 
-static t_boolean is_valid(char **map, int x, int y, char *allowed)
+static t_boolean map_characters_is_valid(char **map)
 {
-	t_boolean negative;
-	t_boolean exists;
-	char *is_allowed;
+	int		line_index;
+	int		char_index;
 
-	negative = x < 0 || y < 0;
-	exists = map[y] && map[y][x];
-	is_allowed = ft_strchr(allowed, map[y][x]);
-	return (!negative && exists && is_allowed != NULL);
+	line_index = 0;
+	while (map[line_index] != NULL)
+	{
+		char_index = 0;
+		while (map[line_index][char_index] != '\0')
+		{
+			if (map[line_index][char_index] != ' ' && map[line_index][char_index] != '1' && \
+				map[line_index][char_index] != '0' && map[line_index][char_index] != 'N' && \
+				map[line_index][char_index] != 'S' && map[line_index][char_index] != 'E' && \
+				map[line_index][char_index] != 'W')
+				return (_false);
+			char_index++;
+		}
+		line_index++;
+	}
+	return (_true);
 }
 
-char **ft_floodfill(char **map, char *allowed, char replacer, t_location start_at)
+
+static void set_coordinates(t_cub3d *cub3d, int x, int y, t_direction direction)
 {
-	int	x;
-	int	y;
-	int	amount;
+	cub3d->map.player.location.x = x;
+	cub3d->map.player.location.y = y;
+	cub3d->map.player.spawn_direction = direction;
+}
 
-	x = (int) start_at.x;
-	y = (int) start_at.y;
-	amount = 100;
+static void	load_player(t_cub3d *cub3d, char **map)
+{
+	int			y;
+	int			x;
+	t_direction	direction;
 
-	while (amount)
+	y = 0;
+	direction = UNKNOWN;
+	while (map[y])
 	{
-		if (is_valid(map, (int) start_at.x + 1, (int) start_at.y, allowed))
+		x = 0;
+		while (map[y][x])
 		{
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E' || map[y][x] == 'W')
+			{
+				if (direction == UNKNOWN)
+					set_coordinates(cub3d, x, y, \
+						direction = get_direction_from_string(&map[y][x]));
+				else
+					return (set_coordinates(cub3d, -1, -1, UNKNOWN));
+			}
 			x++;
-			map[y][x] = replacer;
 		}
-		else if (is_valid(map, (int) start_at.x - 1, (int) start_at.y, allowed))
-		{
-			x--;
-			map[y][x] = replacer;
-		}
-		else if (is_valid(map, (int) start_at.x, (int) start_at.y + 1, allowed))
-		{
-			y++;
-			map[y][x] = replacer;
-		}
-		else if (is_valid(map, (int) start_at.x, (int) start_at.y - 1, allowed))
-		{
-			y--;
-			map[y][x] = replacer;
-		}
-		amount--;
+		y++;
 	}
-	return (map);
+	if (direction == UNKNOWN)
+		set_coordinates(cub3d, -1, -1, UNKNOWN);
+}
+
+
+t_boolean	map_is_valid(t_cub3d *cub3d)
+{
+	if (cub3d->map.map_height == -1 || cub3d->map.map_width == -1)
+		return (_false);
+	if (!map_characters_is_valid(cub3d->map.map))
+		return (_false);
+	load_player(cub3d, cub3d->map.map);
+	if (cub3d->map.player.spawn_direction == UNKNOWN)
+		return (_false);
+	return (_true);
 }

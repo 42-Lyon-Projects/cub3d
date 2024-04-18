@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 16:21:35 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:05:10 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ int main(int argc, char **argv)
 	int value = init_graphics_part(&game);
 	if (value == -1)
 		return (printf("Error\n -> Can't initialize mlx.\n"), 0);
-	parse_map(&game);
-	print_2D_map(game.map.map);
+	load_map(&game);
+	if (!map_is_valid(&game))
+		return (printf("Error\n -> Invalid map.\n"), free_and_exit(&game), 0);
 	//print_2D_map(ft_floodfill(game.map.map, "10?", 'F', (t_location){1, 1}));
 
 	free_and_exit(&game);

@@ -59,37 +59,43 @@ char	*get_line_value(char *line)
 	return (free(tmp), value);
 }
 
-static size_t get_map_height(t_cub3d *cub3d)
+static void load_map_dimensions(t_cub3d *cub3d)
 {
 	int		fd;
-	size_t	len;
+	size_t	height;
+	size_t	max_width;
 	char	*line;
 
+	cub3d->map.map_height = -1;
+	cub3d->map.map_width = -1;
 	fd = open(cub3d->map.path, O_RDONLY);
 	if (fd == -1)
-		return 0;
-
+		return ;
 	line = get_next_line(fd);
-	len = 0;
-	while (line != NULL)
+	height = 0;
+	max_width = 0;
+	while (line != NULL && ++height)
 	{
-		len++;
+		if (ft_strlen(line) > max_width && ft_strlen(line) > 1)
+			max_width = ft_strlen(line);
 		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
 	close(fd);
-	return len;
+	cub3d->map.map_height = height;
+	cub3d->map.map_width = max_width;
 }
 
-void	parse_map(t_cub3d *cub3d)
+void	load_map(t_cub3d *cub3d)
 {
-	int	index;
-	char *line;
-	char **map;
+	int		index;
+	char	*line;
+	char	**map;
 	char	*tmp;
 
-	map = ft_calloc((get_map_height(cub3d) + 1), sizeof(char *));
+	load_map_dimensions(cub3d);
+	map = ft_calloc((cub3d->map.map_height), sizeof(char *));
 	if (!map)
 		return ;
 	index = 0;
@@ -97,12 +103,13 @@ void	parse_map(t_cub3d *cub3d)
 	while (line != NULL)
 	{
 		tmp = ft_strtrim(line, "\n");
-		if (ft_strlen(tmp) != 0)
-			map[index++] = tmp;
-		else
-			free(tmp);
+		if (ft_strlen(tmp) > 0)
+			map[index++] = ft_strdup(tmp);
+		free(tmp);
 		free(line);
 		line = get_next_line(cub3d->map.fd);
 	}
-	return (close(cub3d->map.fd), cub3d->map.map = map, free(line));
+	free(line);
+	close(cub3d->map.fd),
+	cub3d->map.map = map;
 }
