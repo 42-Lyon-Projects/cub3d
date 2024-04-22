@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/22 14:24:50 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:54:40 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string_utils.h>
+
+void	hooks(t_cub3d *data)
+{
+	raycasting(data);
+	mlx_hook(data->window, 17, 0, close_window, &data);
+	mlx_hook(data->window, 2, 0, key_press, &data);
+	mlx_hook(data->window, 3, 0, key_release, &data);
+	mlx_loop_hook(data->mlx, &raycasting, &data);
+	mlx_loop(data->mlx);
+}
 
 int	main(int argc, char **argv)
 {
@@ -38,6 +48,7 @@ int	main(int argc, char **argv)
 		return (printf("Error\n -> Invalid map.\n"), free_and_exit(&cub3d), 0);
 	if (ft_init(&cub3d))
 		return (printf("Error\n -> Error initializing the game.\n"), free_and_exit(&cub3d), 0);
+	hooks(&cub3d);
 	free_and_exit(&cub3d);
 }
 

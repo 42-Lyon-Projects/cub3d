@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/22 14:23:41 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/22 16:54:01 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,12 @@
 	void load_file_content(t_cub3d *cub3d);
 	void load_map(t_cub3d *cub3d, int value);
 	int	ft_init(t_cub3d *data);
+	void	dda_algo(t_cub3d *data, t_ray *ray, t_dda *dda);
+	int	key_release(int key, t_cub3d *data);
+	int	key_press(int key, t_cub3d *data);
+	int	close_window(t_cub3d *data);
+	int	raycasting(t_cub3d *data);
+	
+
 
 #endif

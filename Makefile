@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/04/22 14:26:21 by lunagda          ###   ########.fr        #
+#    Updated: 2024/04/22 16:55:20 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,10 @@ FILES = main.c						\
 		utils/ft_add_to_2d_array.c	\
 		utils/direction_utils.c		\
 		utils/ft_copy_2d_array.c	\
-		exec/ft_init.c
+		exec/ft_init.c				\
+		exec/dda.c					\
+		exec/raycasting.c			\
+		exec/hook_functions.c		\
 
 BUILD_DIRECTORY = ./build/
 
