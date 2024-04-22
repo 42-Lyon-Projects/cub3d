@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   graphics_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 13:43:12 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:16:19 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "cub3d.h"
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include "string_utils.h"
+#include "cub3d.h"
 
 static t_texture	*load_texture(void *mlx, char *key, char *value)
 {
@@ -95,7 +96,5 @@ int	init_graphics_part(t_cub3d *cub3d)
 	index = load_graphics_properties(cub3d, 0, 0);
 	if (index == -1)
 		return (free_and_exit(cub3d), -1);
-	//cub3d->window = mlx_new_window(cub3d->mlx, 128 * 10,128 *10, "Cub3d");
-	//mlx_loop(cub3d->mlx);
 	return (index);
 }

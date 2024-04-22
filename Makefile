@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/02/26 14:10:42 by lunagda          ###   ########.fr        #
+#    Updated: 2024/04/22 14:26:21 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ FILES = main.c						\
 		parsing/map_parser.c		\
 		utils/ft_add_to_2d_array.c	\
 		utils/direction_utils.c		\
-		utils/ft_copy_2d_array.c
+		utils/ft_copy_2d_array.c	\
+		exec/ft_init.c
+
 BUILD_DIRECTORY = ./build/
 
 CC = gcc
@@ -61,7 +63,7 @@ $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):
-	mkdir -p $(BUILD_DIRECTORY)/parsing $(BUILD_DIRECTORY)/utils
+	mkdir -p $(BUILD_DIRECTORY)/parsing $(BUILD_DIRECTORY)/utils $(BUILD_DIRECTORY)/exec
 
 all : $(NAME)
 

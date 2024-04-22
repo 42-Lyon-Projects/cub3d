@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/18 09:05:10 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:24:50 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	main(int argc, char **argv)
 	load_map(&cub3d, value);
 	if (!map_is_valid(&cub3d))
 		return (printf("Error\n -> Invalid map.\n"), free_and_exit(&cub3d), 0);
+	if (ft_init(&cub3d))
+		return (printf("Error\n -> Error initializing the game.\n"), free_and_exit(&cub3d), 0);
 	free_and_exit(&cub3d);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 13:14:03 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:23:41 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@
 	char **ft_copy_2d_array(char **src);
 	void load_file_content(t_cub3d *cub3d);
 	void load_map(t_cub3d *cub3d, int value);
+	int	ft_init(t_cub3d *data);
+
 #endif

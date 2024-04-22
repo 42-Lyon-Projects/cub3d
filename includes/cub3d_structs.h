@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/15 16:07:34 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/22 14:25:35 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,15 @@
 		t_boolean		is_valid;
 	} t_map;
 
+	typedef struct s_image
+	{
+		void	*img;
+		char	*addr;
+		int		bits_per_pixel;
+		int		line_length;
+		int		endian;
+	}	t_image;
+
 	typedef struct s_cub3d
 	{
 		char				**file_content;
@@ -69,6 +78,9 @@
 		t_map				map;
 		void				*mlx;
 		void				*window;
+		int					res_x;
+		int					res_y;
+		t_image				img;
 	}	t_cub3d;
 
 #endif
