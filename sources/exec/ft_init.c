@@ -6,16 +6,35 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/22 14:24:28 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:46:29 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+static void	init_player(t_cub3d *data)
+{
+	if (data->map.player.spawn_direction == NORTH)
+		data->map.player.angle = -M_PI_2;
+	else if (data->map.player.spawn_direction == SOUTH)
+		data->map.player.angle = M_PI_2;
+	else if (data->map.player.spawn_direction == EAST)
+		data->map.player.angle = 0.0;
+	else if (data->map.player.spawn_direction == WEST)
+		data->map.player.angle = M_PI;
+	data->map.player.x_dir = cos(data->map.player.angle);
+	data->map.player.y_dir = sin(data->map.player.angle);
+	data->map.player.plane_x = cos(data->map.player.angle + M_PI_2);
+	data->map.player.plane_y = sin(data->map.player.angle + M_PI_2);
+	data->map.player.x_pos = data->map.player.location.x + 0.5;
+	data->map.player.y_pos = data->map.player.location.y + 0.5;
+}
+
 int	ft_init(t_cub3d *data)
 {
 	data->res_x = 1920;
 	data->res_y = 1080;
+	init_player(data);
 	data->window = mlx_new_window(data->mlx, data->res_x, data->res_y, "Cub3D");
 	if (!data->window)
 		return (free_and_exit(data), 1);

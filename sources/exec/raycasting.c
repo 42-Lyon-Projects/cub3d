@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/22 16:56:19 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:48:32 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,35 @@ void	draw_line(t_cub3d *data, int x, int draw_start)
 	y = 0;
 	while (y < draw_start)
 	{
-		data->img.addr[y * (int)data->res_y + x] = data->textures.ceiling_color;
+		data->img.addr[y * (int)data->res_y + x] = data->ceiling_color;
 		y++;
 	}
 	while (y < data->res_y)
 	{
-		data->img.addr[y * (int)data->res_y + x] = data->textures.floor_color;
+		data->img.addr[y * (int)data->res_y + x] = data->floor_color;
 		y++;
 	}
 }
 
 void	raycast_helper(t_cub3d *data, t_ray *ray, t_dda *dda, int x)
 {
-	ray->camera_x = 2 * x / (double)data->res_x - 1;
-	ray->ray_dir.x = data->map.player.location.x + data->map.player.plane.x * ray->camera_x;
-	ray->ray_dir.y = data->map.player.location.y + data->map.player.plane.y * ray->camera_x;
+	ray->camera_x = 2.0 * x / data->res_x - 1;
+	ray->ray_dir.x = data->map.player.x_dir + data->map.player.plane_x * ray->camera_x;
+	ray->ray_dir.y = data->map.player.y_dir + data->map.player.plane_y * ray->camera_x;
 	dda_algo(data, ray, dda);
 	dda->line_height = (int)(data->res_y / dda->perp_wall_dist);
 	dda->draw_start = (int)(-dda->line_height / 2.0) + ((int)data->res_y / 2.0);
 }
 
-int	raycasting(t_cub3d *data)
+int	raycasting(void *param)
 {
 	t_ray	ray;
 	t_dda	dda;
 	int		x;
+	t_cub3d	*data;
 
 	x = 0;
+	data = (t_cub3d *)param;
 	while (x < data->res_x)
 	{
 		raycast_helper(data, &ray, &dda, x);

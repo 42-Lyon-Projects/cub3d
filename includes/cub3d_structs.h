@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/22 15:44:23 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:52:08 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,13 @@
 	{
 		t_location	location;
 		t_direction	spawn_direction;
-		t_location	plane;
+		double		x_dir;
+		double		y_dir;
+		double		plane_x;
+		double		plane_y;
+		double		x_pos;
+		double		y_pos;
+		double		angle;
 	} t_player;
 
 	typedef struct s_map {
@@ -63,7 +69,7 @@
 	typedef struct s_image
 	{
 		void	*img;
-		int		*addr;
+		char	*addr;
 		int		bits_per_pixel;
 		int		line_length;
 		int		endian;

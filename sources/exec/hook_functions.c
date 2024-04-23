@@ -6,11 +6,12 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:49:13 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/22 16:52:56 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/22 17:42:08 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "stdlib.h"
 
 int	close_window(t_cub3d *data)
 {

@@ -6,14 +6,23 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/22 16:54:01 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:50:45 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 	#define CUB3D_H
 	#include "cub3d_structs.h"
+	#include "stdio.h"
+	#include "math.h"
 	#include "../dependencies/minilibx-linux/mlx.h"
+
+	#ifndef M_PI
+	# define M_PI 3.14159265358979323846
+	#endif
+	#ifndef M_PI_2
+	# define M_PI_2 (M_PI/2)
+	#endif
 
 	int					handle_file_error(char *argv[]);
 	int					init_graphics_part(t_cub3d *game);
@@ -38,7 +47,7 @@
 	int	key_release(int key, t_cub3d *data);
 	int	key_press(int key, t_cub3d *data);
 	int	close_window(t_cub3d *data);
-	int	raycasting(t_cub3d *data);
+	int	raycasting(void *param);
 	
 
 
