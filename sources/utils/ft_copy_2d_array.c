@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_copy_2d_array.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:23:06 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/18 15:23:06 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:35:34 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ char	**ft_copy_2d_array(char **src)
 	char	**new_array;
 
 	length = ft_str_tab_len(src);
+	printf("length = %zu\n", length);
 	index = 0;
 	new_array = ft_calloc(length + 1, sizeof(char *));
 	if (new_array == NULL)
@@ -36,5 +37,6 @@ char	**ft_copy_2d_array(char **src)
 		}
 		index++;
 	}
+	new_array[length] = NULL;
 	return (new_array);
 }

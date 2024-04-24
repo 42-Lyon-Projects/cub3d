@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:18:05 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/18 14:58:13 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:39:46 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+
 
 #include "cub3d.h"
 #include "string_utils.h"
@@ -43,9 +43,9 @@ static t_boolean	map_characters_is_valid(char **map)
 
 static void	set_coordinates(t_cub3d *cub3d, int x, int y, t_direction direction)
 {
-	cub3d->map.player.location.x = x;
-	cub3d->map.player.location.y = y;
-	cub3d->map.player.spawn_direction = direction;
+	cub3d->map->player.location.x = x;
+	cub3d->map->player.location.y = y;
+	cub3d->map->player.spawn_direction = direction;
 }
 
 static void	load_player(t_cub3d *cub3d, char **map)
@@ -80,12 +80,12 @@ static void	load_player(t_cub3d *cub3d, char **map)
 
 t_boolean	map_is_valid(t_cub3d *cub3d)
 {
-	if (cub3d->map.map_height == -1)
+	if (cub3d->map->map_height == -1)
 		return (_false);
-	if (!map_characters_is_valid(cub3d->map.map))
+	if (!map_characters_is_valid(cub3d->map->map))
 		return (_false);
-	load_player(cub3d, cub3d->map.map);
-	if (cub3d->map.player.spawn_direction == UNKNOWN)
+	load_player(cub3d, cub3d->map->map);
+	if (cub3d->map->player.spawn_direction == UNKNOWN)
 		return (_false);
 	return (_true);
 }
@@ -99,14 +99,15 @@ void	load_map(t_cub3d *cub3d, int value)
 	{
 		free(tmp);
 		tmp = ft_strtrim(cub3d->file_content[++value], " \n");
-		value++;
 	}
 	if (tmp)
 		free(tmp);
-	cub3d->map.map = ft_copy_2d_array(&cub3d->file_content[value]);
-	if (cub3d->map.map == NULL)
+	cub3d->map->map = ft_copy_2d_array(&cub3d->file_content[value]);
+	for (int i = 0; cub3d->map->map[i]; i++)
+		printf("%s\n", cub3d->map->map[i]);
+	if (cub3d->map->map == NULL)
 		return (printf("Error\n -> Can't load map.\n"), free_and_exit(cub3d));
-	cub3d->map.map_height = ft_str_tab_len(cub3d->map.map);
-	ft_free_split(cub3d->file_content);
-	cub3d->file_content = NULL;
+	cub3d->map->map_height = ft_str_tab_len(cub3d->map->map);
+	//ft_free_split(cub3d->file_content);
+	//cub3d->file_content = NULL;
 }

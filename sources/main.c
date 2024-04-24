@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/24 15:00:13 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:42:42 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ int	main(int argc, char **argv)
 	return_state = handle_file_error(argv);
 	if (return_state < 0)
 		return (0);
-	cub3d.map.path = argv[1];
-	cub3d.map.map = NULL;
+	cub3d.map = malloc(sizeof(t_map));
+	if (cub3d.map == NULL)
+		return (printf("Error\n -> Can't load map.\n"), 0);
+	cub3d.map->path = argv[1];
+	cub3d.map->map = NULL;
+	cub3d.mlx = NULL;
 	load_file_content(&cub3d);
 	value = init_graphics_part(&cub3d);
 	if (value == -1)
@@ -49,17 +53,25 @@ int	main(int argc, char **argv)
 	if (ft_init(&cub3d))
 		return (printf("Error\n -> Error initializing the game.\n"), free_and_exit(&cub3d), 0);
 	hooks(&cub3d);
-	free_and_exit(&cub3d);
+	//free_and_exit(&cub3d);
 }
 
 void	free_and_exit(t_cub3d *cub3d)
 {
-	if (cub3d->file_content != NULL)
-		ft_free_split(cub3d->file_content);
-	if (cub3d->map.map != NULL)
-		ft_free_split(cub3d->map.map);
-	destroy_textures(cub3d);
-	mlx_destroy_display(cub3d->mlx);
-	free(cub3d->mlx);
+	//if (cub3d->file_content != NULL)
+	//	ft_free_split(cub3d->file_content);
+	
+	for (int i = 0; cub3d->map->map[i]; i++)
+		printf("%d %s \n", i, cub3d->map->map[i]);
+		
+	//if (cub3d->map.map != NULL)
+	//	ft_free_split(cub3d->map.map);
+	//destroy_textures(cub3d);
+	if (cub3d->mlx) {
+		if (cub3d->window)
+			mlx_destroy_window(cub3d->mlx, cub3d->window);
+		mlx_destroy_display(cub3d->mlx);
+		free(cub3d->mlx);
+	}
 	exit(0);
 }

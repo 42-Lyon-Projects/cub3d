@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/22 14:16:19 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:14:48 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ static void	add_texture(t_loaded_textures **textures, t_texture *texture)
 	t_loaded_textures	*current_texture;
 	t_loaded_textures	*next;
 
+	if (!texture)
+		return ;
 	current_texture = *textures;
 	while (*textures != NULL && current_texture->next != NULL)
 		current_texture = current_texture->next;

@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/23 15:52:08 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:26:55 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@
 		int					floor_color;
 		int					ceiling_color;
 
-		t_map				map;
+		t_map				*map;
 		void				*mlx;
 		void				*window;
 		double				res_x;

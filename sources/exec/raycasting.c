@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/23 15:48:32 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:31:10 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	draw_line(t_cub3d *data, int x, int draw_start)
 void	raycast_helper(t_cub3d *data, t_ray *ray, t_dda *dda, int x)
 {
 	ray->camera_x = 2.0 * x / data->res_x - 1;
-	ray->ray_dir.x = data->map.player.x_dir + data->map.player.plane_x * ray->camera_x;
-	ray->ray_dir.y = data->map.player.y_dir + data->map.player.plane_y * ray->camera_x;
+	ray->ray_dir.x = data->map->player.x_dir + data->map->player.plane_x * ray->camera_x;
+	ray->ray_dir.y = data->map->player.y_dir + data->map->player.plane_y * ray->camera_x;
 	dda_algo(data, ray, dda);
 	dda->line_height = (int)(data->res_y / dda->perp_wall_dist);
 	dda->draw_start = (int)(-dda->line_height / 2.0) + ((int)data->res_y / 2.0);

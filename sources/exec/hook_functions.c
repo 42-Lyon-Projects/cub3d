@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:49:13 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/24 14:59:25 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:44:27 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int	close_window(t_cub3d *data)
 {
-	free_and_exit(data);
 	exit(0);
+//	free_and_exit(data);
 }
 
 int	key_press(int key, t_cub3d *data)
@@ -34,10 +34,7 @@ int	key_press(int key, t_cub3d *data)
 	else if (key == D)
 		move_right(data);
 	else if (key == ESC)
-	{
 		free_and_exit(data);
-		exit(0);
-	}
 	return (0);
 }
 
