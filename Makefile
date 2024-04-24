@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/04/22 16:55:20 by lunagda          ###   ########.fr        #
+#    Updated: 2024/04/24 14:56:59 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ FILES = main.c						\
 		exec/dda.c					\
 		exec/raycasting.c			\
 		exec/hook_functions.c		\
+		exec/move.c					\
+		exec/cam_rotate.c			\
 
 BUILD_DIRECTORY = ./build/
 

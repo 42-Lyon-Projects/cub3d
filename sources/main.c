@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/23 13:30:14 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 15:00:13 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 void	hooks(t_cub3d *data)
 {
-	raycasting(data);
-	mlx_hook(data->window, 17, 0, close_window, &data);
-	mlx_hook(data->window, 2, 0, key_press, &data);
-	mlx_hook(data->window, 3, 0, key_release, &data);
-	mlx_loop_hook(data->mlx, &raycasting, &data);
+	//raycasting(data);
+	mlx_hook(data->window, 17, 1L << 0, close_window, &data);
+	mlx_hook(data->window, 2, 1L << 0, key_press, &data);
+	//mlx_hook(data->window, 3, 0, key_release, &data);
+	//mlx_loop_hook(data->mlx, &raycasting, &data);
 	mlx_loop(data->mlx);
 }
 

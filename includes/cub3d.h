@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/23 15:50:45 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 14:58:43 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@
 	#ifndef M_PI_2
 	# define M_PI_2 (M_PI/2)
 	#endif
+	
+	#define W 119
+	#define A 97
+	#define S 115
+	#define D 100
+	#define LEFT 65361
+	#define RIGHT 65363
+	#define ESC 65307
+
+	#define ROTATE_SPEED 0.05
+	#define MOVE_SPEED 0.05
 
 	int					handle_file_error(char *argv[]);
 	int					init_graphics_part(t_cub3d *game);
@@ -44,10 +55,16 @@
 	void load_map(t_cub3d *cub3d, int value);
 	int	ft_init(t_cub3d *data);
 	void	dda_algo(t_cub3d *data, t_ray *ray, t_dda *dda);
-	int	key_release(int key, t_cub3d *data);
+	//int	key_release(int key, t_cub3d *data);
 	int	key_press(int key, t_cub3d *data);
 	int	close_window(t_cub3d *data);
 	int	raycasting(void *param);
+	void	move_forward(t_cub3d *data);
+	void	move_backward(t_cub3d *data);
+	void	move_left(t_cub3d *data);
+	void	move_right(t_cub3d *data);
+	void	cam_rotate_left(t_cub3d *data);
+	void	cam_rotate_right(t_cub3d *data);
 	
 
 
