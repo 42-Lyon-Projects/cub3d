@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/29 15:12:33 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 16:54:09 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ void	raycast_helper(t_cub3d *data, t_ray *ray, t_dda *dda, int x)
 	ray->camera_x = 2.0 * x / data->res_x - 1;
 	ray->ray_dir.x = data->map->player.x_dir + data->map->player.plane_x * ray->camera_x;
 	ray->ray_dir.y = data->map->player.y_dir + data->map->player.plane_y * ray->camera_x;
-	//printf("camera_x = %f, ray_dir.x = %f, ray_dir.y = %f\n", ray->camera_x, ray->ray_dir.x, ray->ray_dir.y);
 	dda_algo(data, ray, dda);
 	dda->line_height = (int)(data->res_y / dda->perp_wall_dist);
 	dda->draw_start = (int)(-dda->line_height / 2.0) + ((int)data->res_y / 2.0);
 }
+
+#include <unistd.h>
 
 int	raycasting(void *param)
 {
@@ -68,7 +69,6 @@ int	raycasting(void *param)
 
 	x = 0;
 	data = (t_cub3d *)param;
-	printf("%d floor color: %d\n", data->ceiling_color, data->floor_color);
 	while (x < data->res_x)
 	{
 		raycast_helper(data, &ray, &dda, x);

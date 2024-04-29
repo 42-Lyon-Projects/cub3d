@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:48:50 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/29 14:27:45 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 16:30:12 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ void	dda_algo(t_cub3d *data, t_ray *ray, t_dda *dda)
 {
 	dda_algo_helper(data, ray, dda);
 	dda->hit = 0;
-	//printf("delta_x = %f, delta_y = %f\n", dda->delta_dist.x, dda->delta_dist.y);
 	while (dda->hit == 0)
 	{
-		//printf("1: map_x = %d, map_y = %d, step_x = %d, step_y = %d, side_dist.x = %f, side_dist.y = %f\n", dda->map_x, dda->map_y, dda->step_x, dda->step_y, dda->side_dist.x, dda->side_dist.y);
 		if (dda->side_dist.x < dda->side_dist.y)
 		{
 			dda->side_dist.x += dda->delta_dist.x;
@@ -70,8 +68,6 @@ void	dda_algo(t_cub3d *data, t_ray *ray, t_dda *dda)
 			dda->map_y += dda->step_y;
 			dda->side = 1;
 		}
-		//printf("WALL OR NOT: %c\n", data->map->map[dda->map_y][dda->map_x]);
-		//printf("2: map_x = %d, map_y = %d, step_x = %d, step_y = %d, side_dist.x = %f, side_dist.y = %f\n", dda->map_x, dda->map_y, dda->step_x, dda->step_y, dda->side_dist.x, dda->side_dist.y);
 		if (data->map->map[dda->map_y][dda->map_x] == '1')
 			dda->hit = 1;
 		else
