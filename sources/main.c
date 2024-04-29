@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/29 16:56:00 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 17:12:32 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	free_and_exit(t_cub3d *cub3d)
 {
 	ft_free_split(cub3d->file_content);
 	ft_free_split(cub3d->map->map);
-	//destroy_textures(cub3d);
+	destroy_textures(cub3d);
+	mlx_destroy_image(cub3d->mlx, cub3d->img.img);
 	mlx_destroy_window(cub3d->mlx, cub3d->window);
 	mlx_destroy_display(cub3d->mlx);
+	free(cub3d->map);
 	free(cub3d->mlx);
 	exit(0);
 }
