@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 14:17:42 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/24 17:31:10 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 14:28:03 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	init_player(t_cub3d *data)
 	data->map->player.plane_y = sin(data->map->player.angle + M_PI_2);
 	data->map->player.x_pos = data->map->player.location.x + 0.5;
 	data->map->player.y_pos = data->map->player.location.y + 0.5;
+	//printf("INITIALIZING PLAYER VALUES\n");
+	//printf("player angle: %f xdir: %f ydir: %f planex: %f planey: %f xpos: %f ypos: %f\n", data->map->player.angle, data->map->player.x_dir, data->map->player.y_dir, data->map->player.plane_x, data->map->player.plane_y, data->map->player.x_pos, data->map->player.y_pos);
 }
 
 int	ft_init(t_cub3d *data)

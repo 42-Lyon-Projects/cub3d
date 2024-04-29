@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/24 17:26:55 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:57:44 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@
 		t_map				*map;
 		void				*mlx;
 		void				*window;
-		double				res_x;
-		double				res_y;
+		int					res_x;
+		int					res_y;
 		t_image				img;
 	}	t_cub3d;
 

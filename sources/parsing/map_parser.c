@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:18:05 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/24 17:39:46 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/29 13:29:53 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void	load_map(t_cub3d *cub3d, int value)
 	if (tmp)
 		free(tmp);
 	cub3d->map->map = ft_copy_2d_array(&cub3d->file_content[value]);
-	for (int i = 0; cub3d->map->map[i]; i++)
-		printf("%s\n", cub3d->map->map[i]);
 	if (cub3d->map->map == NULL)
 		return (printf("Error\n -> Can't load map.\n"), free_and_exit(cub3d));
 	cub3d->map->map_height = ft_str_tab_len(cub3d->map->map);
