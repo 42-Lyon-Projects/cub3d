@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/29 16:54:09 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/30 12:23:42 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	raycasting(void *param)
 
 	x = 0;
 	data = (t_cub3d *)param;
+	player_interaction(data);
 	while (x < data->res_x)
 	{
 		raycast_helper(data, &ray, &dda, x);

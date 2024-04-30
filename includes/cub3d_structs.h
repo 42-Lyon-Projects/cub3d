@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/29 13:57:44 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/30 12:20:07 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,16 @@
 		int			draw_end;
 	}	t_dda;
 
+	typedef struct s_keys
+	{
+		int		w;
+		int		a;
+		int		s;
+		int		d;
+		int		left;
+		int		right;
+	}	t_keys;
+
 	typedef struct s_cub3d
 	{
 		char				**file_content;
@@ -116,6 +126,7 @@
 		int					res_x;
 		int					res_y;
 		t_image				img;
+		t_keys				keys;
 	}	t_cub3d;
 
 #endif
