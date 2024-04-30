@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 23:30:20 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/01/23 13:32:36 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/04/24 17:18:58 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ void	ft_free_split(char **words_list)
 	size_t	index;
 
 	index = 0;
-	while (words_list[index])
+	while (words_list && words_list[index])
 		free(words_list[index++]);
-	free(words_list);
+	if (words_list !=NULL && *words_list != NULL)
+		free(words_list);
 }
 
 static char	**fill_array(const char *string, char delimiter,

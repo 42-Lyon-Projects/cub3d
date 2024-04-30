@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/02/26 14:10:42 by lunagda          ###   ########.fr        #
+#    Updated: 2024/04/30 15:58:32 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 MAKE_MLX = make -C ./dependencies/minilibx-linux
 MLX = ./dependencies/minilibx-linux/libmlx_Linux.a
-MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o2
 
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
@@ -28,7 +28,14 @@ FILES = main.c						\
 		parsing/map_parser.c		\
 		utils/ft_add_to_2d_array.c	\
 		utils/direction_utils.c		\
-		utils/ft_copy_2d_array.c
+		utils/ft_copy_2d_array.c	\
+		exec/ft_init.c				\
+		exec/dda.c					\
+		exec/raycasting.c			\
+		exec/hook_functions.c		\
+		exec/move.c					\
+		exec/cam_rotate.c			\
+
 BUILD_DIRECTORY = ./build/
 
 CC = gcc
@@ -61,7 +68,7 @@ $(BUILD_DIRECTORY)%.o: ./sources/%.c Makefile
 	$(CC) $(FLAGS) -I ./includes/ -I ./dependencies/libft/.includes/ $< -o $@
 
 $(BUILD_DIRECTORY):
-	mkdir -p $(BUILD_DIRECTORY)/parsing $(BUILD_DIRECTORY)/utils
+	mkdir -p $(BUILD_DIRECTORY)/parsing $(BUILD_DIRECTORY)/utils $(BUILD_DIRECTORY)/exec
 
 all : $(NAME)
 

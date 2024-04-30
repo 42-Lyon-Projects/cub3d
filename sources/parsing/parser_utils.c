@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:32:23 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 17:18:38 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:28:28 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	load_file_content(t_cub3d *cub3d)
 	char	**content;
 	char	**tmp;
 
-	fd = open(cub3d->map.path, O_RDONLY);
+	fd = open(cub3d->map->path, O_RDONLY);
 	if (fd == -1)
 		return ;
 	content = ft_calloc(1, sizeof(char *));

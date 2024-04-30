@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_structs.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/15 16:07:34 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/04/30 12:20:07 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@
 	{
 		t_location	location;
 		t_direction	spawn_direction;
+		double		x_dir;
+		double		y_dir;
+		double		plane_x;
+		double		plane_y;
+		double		x_pos;
+		double		y_pos;
+		double		angle;
 	} t_player;
 
 	typedef struct s_map {
@@ -59,6 +66,53 @@
 		t_boolean		is_valid;
 	} t_map;
 
+	typedef struct s_image
+	{
+		void	*img;
+		char	*addr;
+		int		bits_per_pixel;
+		int		line_length;
+		int		endian;
+	}	t_image;
+
+	typedef struct s_vec
+	{
+		double	x;
+		double	y;
+	}	t_vec;
+
+	typedef	struct s_ray
+	{
+		double		camera_x;
+		t_vec		ray_dir;
+	}	t_ray;
+	
+	typedef	struct s_dda
+	{
+		t_vec		side_dist;
+		t_vec		delta_dist;
+		int			step_x;
+		int			step_y;
+		int			map_x;
+		int			map_y;
+		double		perp_wall_dist;
+		int			side;
+		int			hit;
+		int			line_height;
+		int			draw_start;
+		int			draw_end;
+	}	t_dda;
+
+	typedef struct s_keys
+	{
+		int		w;
+		int		a;
+		int		s;
+		int		d;
+		int		left;
+		int		right;
+	}	t_keys;
+
 	typedef struct s_cub3d
 	{
 		char				**file_content;
@@ -66,9 +120,13 @@
 		int					floor_color;
 		int					ceiling_color;
 
-		t_map				map;
+		t_map				*map;
 		void				*mlx;
 		void				*window;
+		int					res_x;
+		int					res_y;
+		t_image				img;
+		t_keys				keys;
 	}	t_cub3d;
 
 #endif
