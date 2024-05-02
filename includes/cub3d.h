@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/30 12:24:09 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/02 13:55:34 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@
 	void	cam_rotate_left(t_cub3d *data);
 	void	cam_rotate_right(t_cub3d *data);
 	void	player_interaction(t_cub3d *data);
-
-
+	void	get_wall_side(t_cub3d *data, t_dda *dda, t_ray *ray);
+	void	texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray);
+	int		get_pixel_color(t_cub3d *data, int x, int y);
 
 #endif

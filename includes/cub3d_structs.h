@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/30 12:20:07 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/02 13:49:23 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,10 @@
 		void				*window;
 		int					res_x;
 		int					res_y;
+		double				wall_x;
+		void				*wall_texture;
 		t_image				img;
+		t_image				wall;
 		t_keys				keys;
 	}	t_cub3d;
 

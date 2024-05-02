@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/04/30 12:23:42 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/02 16:57:05 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,22 @@ void	draw_line(t_cub3d *data, int x, int draw_start, t_dda dda)
 	}
 }
 
-void	draw_wall(t_cub3d *data, t_dda dda, int x)
+void	draw_wall(t_cub3d *data, t_dda dda, t_ray ray, int x)
 {
-	while (dda.draw_start < dda.draw_end)
+	int	tex_x;
+	int	tex_y;
+	int	color;
+	int	y;
+
+	texture_prep(data, &dda, &ray);
+	y = dda.draw_start;
+	while (y < dda.draw_end + 1)
 	{
-		cub_pixel_put(&data->img, x, dda.draw_start, 0xFFFFFF);
-		dda.draw_start++;
+		tex_x = (int)(data->wall_x * 256);
+		tex_y = (int)(((y - (data->res_y / 2) + (dda.line_height / 2)) * 256) / dda.line_height);
+		color = get_pixel_color(data, tex_x, tex_y); 
+		cub_pixel_put(&data->img, x, y, color);
+		y++;
 	}
 }
 
@@ -57,8 +67,6 @@ void	raycast_helper(t_cub3d *data, t_ray *ray, t_dda *dda, int x)
 	dda->line_height = (int)(data->res_y / dda->perp_wall_dist);
 	dda->draw_start = (int)(-dda->line_height / 2.0) + ((int)data->res_y / 2.0);
 }
-
-#include <unistd.h>
 
 int	raycasting(void *param)
 {
@@ -80,7 +88,7 @@ int	raycasting(void *param)
 		if (dda.draw_end >= data->res_y)
 			dda.draw_end = data->res_y - 1;
 		draw_line(data, x, dda.draw_start, dda);
-		draw_wall(data, dda, x);
+		draw_wall(data, dda, ray, x);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->img.img, 0, 0);

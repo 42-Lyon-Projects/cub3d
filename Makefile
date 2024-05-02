@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/04/30 15:58:32 by lunagda          ###   ########.fr        #
+#    Updated: 2024/05/02 13:52:45 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ FILES = main.c						\
 		exec/hook_functions.c		\
 		exec/move.c					\
 		exec/cam_rotate.c			\
+		exec/texture_functions.c
 
 BUILD_DIRECTORY = ./build/
 
