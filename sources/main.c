@@ -26,6 +26,14 @@ void	hooks(t_cub3d *data)
 	mlx_loop(data->mlx);
 }
 
+static void init_null(t_cub3d *cub3d)
+{
+	cub3d->map->map = NULL;
+	cub3d->img.img = NULL;
+	cub3d->mlx = NULL;
+	cub3d->window = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub3d;
@@ -41,8 +49,7 @@ int	main(int argc, char **argv)
 	if (cub3d.map == NULL)
 		return (printf("Error\n -> Can't load map.\n"), 0);
 	cub3d.map->path = argv[1];
-	cub3d.map->map = NULL;
-	cub3d.mlx = NULL;
+	init_null(&cub3d);
 	load_file_content(&cub3d);
 	value = init_graphics_part(&cub3d);
 	if (value == -1)
@@ -60,10 +67,15 @@ void	free_and_exit(t_cub3d *cub3d)
 	ft_free_split(cub3d->file_content);
 	ft_free_split(cub3d->map->map);
 	destroy_textures(cub3d);
-	mlx_destroy_image(cub3d->mlx, cub3d->img.img);
-	mlx_destroy_window(cub3d->mlx, cub3d->window);
-	mlx_destroy_display(cub3d->mlx);
 	free(cub3d->map);
-	free(cub3d->mlx);
+	if (cub3d->mlx)
+	{
+		if (cub3d->img.img)
+			mlx_destroy_image(cub3d->mlx, cub3d->img.img);
+		if (cub3d->window)
+			mlx_destroy_window(cub3d->mlx, cub3d->window);
+		mlx_destroy_display(cub3d->mlx);
+		free(cub3d->mlx);
+	}
 	exit(0);
 }
