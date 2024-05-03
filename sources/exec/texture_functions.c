@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:56:40 by lunagda           #+#    #+#             */
-/*   Updated: 2024/05/02 17:06:19 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/03 13:35:30 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray)
 		data->wall_x = data->map->player.y_pos + dda->perp_wall_dist * ray->ray_dir.y;
 	else
 		data->wall_x = data->map->player.x_pos + dda->perp_wall_dist * ray->ray_dir.x;
-	//data->wall_x = floor(data->wall_x);
+	data->wall_x -= floor(data->wall_x);
 }
 
 int	get_pixel_color(t_cub3d *data, int x, int y)
