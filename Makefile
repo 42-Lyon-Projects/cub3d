@@ -23,6 +23,7 @@ FILES = main.c						\
 		errors_handler.c			\
 		parsing/parser_utils.c		\
 		parsing/color_utils.c		\
+		parsing/map_validator.c		\
 		graphics_utils.c			\
 		parsing/texture_utils.c		\
 		parsing/map_parser.c		\
