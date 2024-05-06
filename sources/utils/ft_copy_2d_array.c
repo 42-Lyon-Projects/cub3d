@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:23:06 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 17:03:30 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:15:54 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 #include <stdlib.h>
 #include "memory_utils.h"
 
-
-static void fill(char *src, char *dest, size_t len)
+static void	fill(char *src, char *dest, size_t len)
 {
-	size_t index = 0;
-	while(src[index])
+	size_t	index;
+
+	index = 0;
+	while (src[index])
 	{
 		if (src[index] == ' ')
 			dest[index] = '/';
@@ -34,10 +35,10 @@ static void fill(char *src, char *dest, size_t len)
 	}
 }
 
-size_t get_biggest_line(char **src)
+size_t	get_biggest_line(char **src)
 {
-	size_t len;
-	size_t index;
+	size_t	len;
+	size_t	index;
 
 	len = 0;
 	index = 0;
@@ -47,7 +48,7 @@ size_t get_biggest_line(char **src)
 			len = ft_strlen(src[index]);
 		index++;
 	}
-	return len;
+	return (len);
 }
 
 char	**ft_round_2d(char **src, int biggest_line)
@@ -63,20 +64,18 @@ char	**ft_round_2d(char **src, int biggest_line)
 		return (NULL);
 	while (src[index])
 	{
-
 		new_array[index] = ft_calloc(biggest_line + 1, sizeof(char));
-		fill(src[index], new_array[index], biggest_line);
-		if (new_array[index] == NULL)
+		if (!new_array[index])
 		{
 			ft_free_split(new_array);
 			return (NULL);
 		}
+		fill(src[index], new_array[index], biggest_line);
 		index++;
 	}
 	new_array[length] = NULL;
 	return (new_array);
 }
-
 
 char	**ft_copy_2d_array(char **src)
 {
