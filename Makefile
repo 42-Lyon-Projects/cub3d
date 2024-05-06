@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/05/02 13:52:45 by lunagda          ###   ########.fr        #
+#    Updated: 2024/05/06 14:14:37 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = cub3D
 
 MAKE_MLX = make -C ./dependencies/minilibx-linux
 MLX = ./dependencies/minilibx-linux/libmlx_Linux.a
-MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o2
+MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
@@ -42,8 +42,7 @@ BUILD_DIRECTORY = ./build/
 
 CC = gcc
 
-FLAGS = -c -g3 -MD
-
+FLAGS = -c -g3 -MD -O2
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
 $(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT) $(MLX)
