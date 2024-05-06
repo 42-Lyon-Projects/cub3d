@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/30 12:16:30 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 15:56:31 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	main(int argc, char **argv)
 	load_map(&cub3d, value);
 	if (!map_is_valid(&cub3d))
 		return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), free_and_exit(&cub3d), 0);
-	if (map_is_open(cub3d.map->map))
-		return (free_and_exit(&cub3d), 0);
+	if (!map_is_one_block(&cub3d))
+		return (ft_putstr_fd("Error\n -> Sorry you can't have island.\n", 2), free_and_exit(&cub3d), 0);
 	if (ft_init(&cub3d))
 		return (ft_putstr_fd("Error\n -> Error initializing the game.\n", 2), free_and_exit(&cub3d), 0);
 	hooks(&cub3d);

@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/02 13:55:34 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 17:11:03 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@
 	void				get_wall_side(t_cub3d *data, t_dda *dda, t_ray *ray);
 	void				texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray);
 	int					get_pixel_color(t_cub3d *data, int x, int y);
-	t_boolean			map_is_open(char **map);
+	void				free_flood(t_flood **flood);
+	int					add_to_flood(t_flood **flood, size_t j, size_t i);
+	void				first_position(t_cub3d *cub3d, t_flood **flood, char **map);
+	t_boolean			set_contains_char(char c, char *set);
+	void				floodfill(t_cub3d *cub3d, char **map);
+	int					map_is_one_block(t_cub3d *cub3d);
+	char				**ft_round_2d(char **src, int biggest_line);
+	size_t				get_biggest_line(char **src);
 
 #endif
