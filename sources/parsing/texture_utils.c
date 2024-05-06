@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 15:47:25 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/02 13:31:37 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 14:39:36 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ t_direction	get_texture_direction_from_string(char *key)
 	return (UNKNOWN);
 }
 
-t_loaded_textures	*get_texture_by_direction(t_cub3d *cub3d, t_direction direction)
+t_loaded_textures	*get_texture_by_direction(t_cub3d *cub3d,
+		t_direction direction)
 {
 	t_loaded_textures	*current_texture;
 
