@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 19:08:11 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/30 12:16:30 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:17 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	int		return_state;
 	int		value;
 
-	if (argc < 2)
+	if (argc != 2)
 		return (ft_putstr_fd("Error\n -> Invalid number of arguments.\n", 2), 0);
 	return_state = handle_file_error(argv);
 	if (return_state < 0)

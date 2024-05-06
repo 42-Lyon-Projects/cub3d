@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   errors_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 16:30:48 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 10:34:12 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:01:01 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	handle_file_error(char *argv[])
 {
 	int	fd;
 
-	if (!argv[1])
-		return (printf("Error\n -> Invalid file path.\n"), -1);
 	if (!ft_endwith(argv[1], ".cub"))
 		return (printf("Error\n -> Invalid file format.\n"), -2);
 	fd = open(argv[1], O_RDONLY);
