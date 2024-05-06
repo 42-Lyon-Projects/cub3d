@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/05/06 14:14:37 by lunagda          ###   ########.fr        #
+#    Updated: 2024/05/06 14:25:19 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,8 @@ MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -
 
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
+
+NORM = @norminette includes sources maps textures
 
 FILES = main.c						\
 		errors_handler.c			\
@@ -84,6 +86,9 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
+
+norminette:
+	$(NORM)
 
 .PHONY: all clean fclean re $(LIBFT)
 

@@ -6,10 +6,9 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:18:05 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/29 13:29:53 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 14:41:47 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub3d.h"
 #include "string_utils.h"
@@ -48,13 +47,11 @@ static void	set_coordinates(t_cub3d *cub3d, int x, int y, t_direction direction)
 	cub3d->map->player.spawn_direction = direction;
 }
 
-static void	load_player(t_cub3d *cub3d, char **map)
+static void	load_player(t_cub3d *cub3d, char **map, int y)
 {
-	int			y;
 	int			x;
 	t_direction	direction;
 
-	y = 0;
 	direction = UNKNOWN;
 	while (map[y])
 	{
@@ -84,7 +81,7 @@ t_boolean	map_is_valid(t_cub3d *cub3d)
 		return (_false);
 	if (!map_characters_is_valid(cub3d->map->map))
 		return (_false);
-	load_player(cub3d, cub3d->map->map);
+	load_player(cub3d, cub3d->map->map, 0);
 	if (cub3d->map->player.spawn_direction == UNKNOWN)
 		return (_false);
 	return (_true);
@@ -106,6 +103,4 @@ void	load_map(t_cub3d *cub3d, int value)
 	if (cub3d->map->map == NULL)
 		return (printf("Error\n -> Can't load map.\n"), free_and_exit(cub3d));
 	cub3d->map->map_height = ft_str_tab_len(cub3d->map->map);
-	//ft_free_split(cub3d->file_content);
-	//cub3d->file_content = NULL;
 }

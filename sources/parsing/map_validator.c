@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 08:45:57 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/03 14:26:49 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/05/06 14:42:53 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "put_utils.h"
-
 
 static t_boolean	ft_isset(char c, char *set)
 {
@@ -43,7 +42,8 @@ t_boolean	map_is_open(char **map)
 			{
 				if (!map[y][x + 1] || map[y][x + 1] == ' ')
 					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
-				if (map[y + 1] == NULL || !map[y + 1][x] || map[y + 1][x] == ' ')
+				if (map[y + 1] == NULL || !map[y + 1][x]
+					|| map[y + 1][x] == ' ')
 					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
 				if ((x && (!map[y][x - 1] || map[y][x - 1] == ' ')) || !x)
 					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);

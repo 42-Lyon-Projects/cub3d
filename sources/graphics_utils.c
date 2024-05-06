@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/24 17:14:48 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 14:48:12 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ static void	add_texture(t_loaded_textures **textures, t_texture *texture)
 		current_texture->next = next;
 }
 
-static int	load_graphics_properties(t_cub3d *cub3d, int index, int limiter)
+static int	load_graphics_properties(t_cub3d *cub3d, int index, int *limiter)
 {
 	char		*line;
 	char		*key;
 	char		*value;
 
-	while (limiter < 6)
+	while (*limiter < 6)
 	{
 		line = cub3d->file_content[index++];
 		if (!line)
@@ -70,9 +70,9 @@ static int	load_graphics_properties(t_cub3d *cub3d, int index, int limiter)
 		if (!key || !value)
 			continue ;
 		if (get_texture_direction_from_string(key) != UNKNOWN && \
-			ft_endwith(value, ".xpm") && ++limiter)
+			ft_endwith(value, ".xpm") && ++*limiter)
 			add_texture(&cub3d->textures, load_texture(cub3d->mlx, key, value));
-		else if (key_is_color(key) && color_value_is_valid(value) && ++limiter)
+		else if (key_is_color(key) && color_value_is_valid(value) && ++*limiter)
 			load_color(cub3d, key, value);
 		free(key);
 		free(value);
@@ -80,22 +80,25 @@ static int	load_graphics_properties(t_cub3d *cub3d, int index, int limiter)
 			cub3d->ceiling_color != -1 && cub3d->floor_color != -1)
 			return (index);
 	}
-	if (limiter != 6 || !textures_has_correctly_loaded(cub3d) || \
-		cub3d->ceiling_color == -1 || cub3d->floor_color == -1)
-		return (printf("Error \n -> Textures error \n"), free_and_exit(cub3d), -1);
 }
 
 int	init_graphics_part(t_cub3d *cub3d)
 {
 	int	index;
+	int	limiter;
 
+	limiter = 0;
 	cub3d->mlx = mlx_init();
 	if (!cub3d->mlx)
 		return (-1);
 	cub3d->textures = NULL;
 	cub3d->ceiling_color = -1;
 	cub3d->floor_color = -1;
-	index = load_graphics_properties(cub3d, 0, 0);
+	index = load_graphics_properties(cub3d, 0, &limiter);
+	if (limiter != 6 || !textures_has_correctly_loaded(cub3d) || \
+		cub3d->ceiling_color == -1 || cub3d->floor_color == -1)
+		return (printf("Error \n -> Textures error \n"),
+			free_and_exit(cub3d), -1);
 	if (index == -1)
 		return (free_and_exit(cub3d), -1);
 	return (index);
