@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 15:07:14 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 17:11:09 by jbadaire         ###   ########.fr       */
+/*   Created: 2024/05/07 10:17:29 by jbadaire          #+#    #+#             */
+/*   Updated: 2024/05/07 10:17:29 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "cub3d.h"
 #include <stdlib.h>
 #include <string_utils.h>

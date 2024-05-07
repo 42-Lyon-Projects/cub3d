@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbadaire <jbadaire@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 08:45:57 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 17:14:50 by jbadaire         ###   ########.fr       */
+/*   Created: 2024/05/07 10:17:35 by jbadaire          #+#    #+#             */
+/*   Updated: 2024/05/07 10:17:35 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <string.h>

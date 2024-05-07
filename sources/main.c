@@ -27,7 +27,7 @@ void	hooks(t_cub3d *data)
 	mlx_loop(data->mlx);
 }
 
-static void init_null(t_cub3d *cub3d)
+static void	init_null(t_cub3d *cub3d)
 {
 	cub3d->map->map = NULL;
 	cub3d->img.img = NULL;
