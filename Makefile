@@ -21,24 +21,25 @@ LIBFT = ./dependencies/libft/build/libft.a
 
 NORM = @norminette includes sources maps textures
 
-FILES = main.c						\
-		errors_handler.c			\
-		parsing/parser_utils.c		\
-		parsing/color_utils.c		\
-		parsing/map_validator.c		\
+FILES = main.c								\
+		errors_handler.c					\
+		parsing/parser_utils.c				\
+		parsing/color_utils.c				\
+		parsing/map_validator.c				\
 		parsing/map_validator_utils.c		\
-		graphics_utils.c			\
-		parsing/texture_utils.c		\
-		parsing/map_parser.c		\
-		utils/ft_add_to_2d_array.c	\
-		utils/direction_utils.c		\
-		utils/ft_copy_2d_array.c	\
-		exec/ft_init.c				\
-		exec/dda.c					\
-		exec/raycasting.c			\
-		exec/hook_functions.c		\
-		exec/move.c					\
-		exec/cam_rotate.c			\
+		parsing/map_border.c				\
+		graphics_utils.c					\
+		parsing/texture_utils.c				\
+		parsing/map_parser.c				\
+		utils/ft_add_to_2d_array.c			\
+		utils/direction_utils.c				\
+		utils/ft_copy_2d_array.c			\
+		exec/ft_init.c						\
+		exec/dda.c							\
+		exec/raycasting.c					\
+		exec/hook_functions.c				\
+		exec/move.c							\
+		exec/cam_rotate.c					\
 		exec/texture_functions.c
 
 BUILD_DIRECTORY = ./build/
