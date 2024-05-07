@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 14:48:12 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:34:41 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@
 
 static t_texture	*load_texture(void *mlx, char *key, char *value)
 {
-	int			w;
-	int			h;
 	t_texture	*texture;
 
 	texture = malloc(sizeof(t_texture));
 	if (!texture)
 		return (NULL);
 	texture->key = ft_strdup(key);
-	texture->texture = mlx_xpm_file_to_image(mlx, value, &w, &h);
+	texture->texture = mlx_xpm_file_to_image(mlx, value,
+			&texture->width, &texture->height);
 	texture->direction = get_texture_direction_from_string(key);
 	return (texture);
 }

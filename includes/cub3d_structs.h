@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 14:43:08 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/05/07 13:18:43 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_texture
 {
 	char		*key;
 	void		*texture;
+	int			width;
+	int			height;
 	t_direction	direction;
 }	t_texture;
 
@@ -74,6 +76,8 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int		width;
+	int		height;
 }	t_image;
 
 typedef struct s_vec

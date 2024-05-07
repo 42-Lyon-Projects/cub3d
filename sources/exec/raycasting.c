@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:18:21 by lunagda           #+#    #+#             */
-/*   Updated: 2024/05/06 14:35:11 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:21:15 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	draw_wall(t_cub3d *data, t_dda dda, t_ray ray, int x)
 	{
 		if (dda.line_height == 0)
 			break ;
-		tex_x = (int)(data->wall_x * 256);
+		tex_x = (int)(data->wall_x * data->wall.width);
 		tex_y = (int)(((y - (data->res_y / 2) + (dda.line_height / 2))
-					* 256) / dda.line_height);
+					* data->wall.height) / dda.line_height);
 		color = get_pixel_color(data, tex_x, tex_y);
 		cub_pixel_put(&data->img, x, y, color);
 		y++;

@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 12:56:40 by lunagda           #+#    #+#             */
-/*   Updated: 2024/05/06 14:38:31 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/07 13:34:27 by lunagda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	get_wall_side(t_cub3d *data, t_dda *dda, t_ray *ray)
 			texture = get_texture_by_direction(data, SOUTH);
 	}
 	data->wall.img = texture->current_texture->texture;
+	data->wall.width = texture->current_texture->width;
+	data->wall.height = texture->current_texture->height;
 }
 
 void	texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray)
@@ -48,13 +50,23 @@ void	texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray)
 	get_wall_side(data, dda, ray);
 	if (dda->side == 0)
 	{
-		data->wall_x = data->map->player.y_pos + dda->perp_wall_dist
-			* ray->ray_dir.y;
+		if (ray->ray_dir.x < 0)
+			data->wall_x = data->wall.width - \
+			(data->map->player.y_pos + dda->perp_wall_dist \
+			* ray->ray_dir.y);
+		else
+			data->wall_x = data->map->player.y_pos \
+			+ dda->perp_wall_dist * ray->ray_dir.y;
 	}
 	else
 	{
-		data->wall_x = data->map->player.x_pos + dda->perp_wall_dist
-			* ray->ray_dir.x;
+		if (ray->ray_dir.y < 0)
+			data->wall_x = data->map->player.x_pos + dda->perp_wall_dist
+				* ray->ray_dir.x;
+		else
+			data->wall_x = data->wall.width \
+			- (data->map->player.x_pos + dda->perp_wall_dist \
+			* ray->ray_dir.x);
 	}
 	if (data->wall_x != floor(data->wall_x))
 		data->wall_x -= floor(data->wall_x);
