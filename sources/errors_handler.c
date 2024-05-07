@@ -34,6 +34,19 @@ int	handle_file_error(char *argv[])
 	return (1);
 }
 
+static t_boolean	all_direction_has_loaded(t_cub3d *cub3D)
+{
+	if (get_texture_by_direction(cub3D, NORTH) == NULL)
+		return (_false);
+	if (get_texture_by_direction(cub3D, SOUTH) == NULL)
+		return (_false);
+	if (get_texture_by_direction(cub3D, WEST) == NULL)
+		return (_false);
+	if (get_texture_by_direction(cub3D, EAST) == NULL)
+		return (_false);
+	return (_true);
+}
+
 t_boolean	textures_has_correctly_loaded(t_cub3d *cub3d)
 {
 	t_loaded_textures	*tmp;
@@ -49,6 +62,8 @@ t_boolean	textures_has_correctly_loaded(t_cub3d *cub3d)
 		index++;
 	}
 	if (index != 4)
+		return (_false);
+	if (!all_direction_has_loaded(cub3d))
 		return (_false);
 	return (_true);
 }

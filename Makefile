@@ -19,7 +19,7 @@ MLX_FLAGS = -L./dependencies/minilibx-linux -l:libmlx.a -L/usr/lib -Imlx_linux -
 MAKE_LIBFT = make -C ./dependencies/libft
 LIBFT = ./dependencies/libft/build/libft.a
 
-NORM = @norminette includes sources maps textures
+NORM = @norminette includes sources maps textures dependencies/libft
 
 FILES = main.c								\
 		errors_handler.c					\
@@ -46,7 +46,7 @@ BUILD_DIRECTORY = ./build/
 
 CC = gcc
 
-FLAGS = -c -g3 -MD -O2
+FLAGS = -Wall -Werror -Wextra -c -g3 -MD -O2
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
 $(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT) $(MLX)

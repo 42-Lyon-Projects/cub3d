@@ -80,6 +80,7 @@ static int	load_graphics_properties(t_cub3d *cub3d, int index, int *limiter)
 			cub3d->ceiling_color != -1 && cub3d->floor_color != -1)
 			return (index);
 	}
+	return (0);
 }
 
 int	init_graphics_part(t_cub3d *cub3d)

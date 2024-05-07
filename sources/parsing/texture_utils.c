@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 15:47:25 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 14:39:36 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/07 11:24:32 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ t_loaded_textures	*get_texture_by_direction(t_cub3d *cub3d,
 		if (current_texture->current_texture->direction == direction \
 			&& current_texture->current_texture->texture != NULL)
 			return (current_texture);
-		if (current_texture->next != NULL)
-			current_texture = current_texture->next;
+		current_texture = current_texture->next;
 	}
 	return (NULL);
 }

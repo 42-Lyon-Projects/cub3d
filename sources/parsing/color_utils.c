@@ -6,7 +6,7 @@
 /*   By: jbadaire <jbadaire@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 09:59:50 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/04/16 10:18:22 by jbadaire         ###   ########.fr       */
+/*   Updated: 2024/05/07 11:47:16 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_boolean	color_value_is_valid(char *value)
 	char	**colors;
 	int		tab_index;
 	int		v;
+	char	*tmp;
 
 	colors = ft_split(value, ',');
 	if (!colors)
@@ -50,20 +51,35 @@ t_boolean	color_value_is_valid(char *value)
 	tab_index = 0;
 	while (colors[tab_index] && tab_index < 3)
 	{
-		if (!str_is_numeric(colors[tab_index]))
-			return (ft_free_split(colors), _false);
-		if (ft_strlen(colors[tab_index]) > 3)
-			return (ft_free_split(colors), _false);
-		v = ft_atoi(colors[tab_index]);
+		tmp = ft_strtrim(colors[tab_index], " 	");
+		if (!str_is_numeric(tmp))
+			return (free(tmp), ft_free_split(colors), _false);
+		if (ft_strlen(tmp) > 3)
+			return (free(tmp), ft_free_split(colors), _false);
+		v = ft_atoi(tmp);
 		if (v < 0 || v > 255)
-			return (ft_free_split(colors), _false);
+			return (free(tmp), ft_free_split(colors), _false);
 		tab_index++;
+		free(tmp);
 	}
 	return (ft_free_split(colors), _true);
 }
 
-static int	load_trgb(int t, int r, int g, int b)
+static int	load_trgb(char *st, char *sr, char *sg, char *sb)
 {
+	int	t;
+	int	r;
+	int	g;
+	int	b;
+
+	t = ft_atoi(st);
+	r = ft_atoi(sr);
+	g = ft_atoi(sg);
+	b = ft_atoi(sb);
+	free(st);
+	free(sr);
+	free(sg);
+	free(sb);
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
@@ -74,8 +90,14 @@ void	load_color(t_cub3d *cube, char *key, char *value)
 	char	*tmp;
 
 	colors = ft_split(value, ',');
-	color = load_trgb(0, ft_atoi(colors[0]), \
-		ft_atoi(colors[1]), ft_atoi(colors[2]));
+	if (!colors)
+		return ;
+	if (ft_str_tab_len(colors) != 3)
+		return (ft_free_split(colors));
+	color = load_trgb(ft_strdup("0"), \
+	ft_strtrim(colors[0], " 	"), \
+		ft_strtrim(colors[1], " 	"), \
+		ft_strtrim(colors[2], " 	"));
 	tmp = ft_strtrim(key, " 	\n");
 	if (ft_str_equals(tmp, "F"))
 		cube->floor_color = color;

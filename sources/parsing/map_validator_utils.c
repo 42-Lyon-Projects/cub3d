@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "cub3d.h"
 #include <stdlib.h>
-#include <string_utils.h>
+#include "string_utils.h"
 
 void	free_flood(t_flood **flood)
 {
@@ -33,7 +33,7 @@ void	free_flood(t_flood **flood)
 	*flood = NULL;
 }
 
-int	add_to_flood(t_flood **flood, size_t j, size_t i)
+int	add_to_flood(t_flood **flood, size_t y, size_t x)
 {
 	t_flood	*new;
 	t_flood	*temp;
@@ -41,8 +41,8 @@ int	add_to_flood(t_flood **flood, size_t j, size_t i)
 	new = malloc(sizeof(*new));
 	if (!new)
 		return (1);
-	new->y = j;
-	new->x = i;
+	new->y = y;
+	new->x = x;
 	new->next = NULL;
 	if (!*flood)
 		*flood = new;
@@ -56,9 +56,14 @@ int	add_to_flood(t_flood **flood, size_t j, size_t i)
 	return (0);
 }
 
-void	first_position(t_cub3d *cub3d, t_flood **flood, char **map)
+void	first_position(t_cub3d *cub3d, t_flood **flood)
 {
-	if (add_to_flood(flood, 1, 15))
+	int	y;
+	int	x;
+
+	y = (int) cub3d->map->player.location.y;
+	x = (int) cub3d->map->player.location.x;
+	if (add_to_flood(flood, y, x))
 		return (free_flood(flood), free_and_exit(cub3d));
 }
 

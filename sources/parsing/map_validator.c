@@ -106,7 +106,7 @@ void	floodfill(t_cub3d *cub3d, char **map)
 	t_flood	*temp;
 
 	flood = NULL;
-	first_position(cub3d, &flood, map);
+	first_position(cub3d, &flood);
 	while (flood)
 	{
 		temp = flood;

@@ -132,11 +132,11 @@ typedef struct s_cub3d
 	t_keys				keys;
 }	t_cub3d;
 
-	typedef struct s_flood
-	{
-		size_t			y;
-		size_t			x;
-		struct s_flood	*next;
-	}	t_flood;
+typedef struct s_flood
+{
+	size_t			y;
+	size_t			x;
+	struct s_flood	*next;
+}	t_flood;
 
 #endif

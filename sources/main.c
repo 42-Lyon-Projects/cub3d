@@ -87,7 +87,10 @@ int	main(int argc, char **argv)
 void	free_and_exit(t_cub3d *cub3d)
 {
 	ft_free_split(cub3d->file_content);
-	ft_free_split(cub3d->map->map);
+	if (ft_str_tab_len(cub3d->map->map) == 0)
+		free(cub3d->map->map);
+	else
+		ft_free_split(cub3d->map->map);
 	destroy_textures(cub3d);
 	free(cub3d->map);
 	if (cub3d->mlx)

@@ -102,5 +102,7 @@ void	load_map(t_cub3d *cub3d, int value)
 	cub3d->map->map = ft_copy_2d_array(&cub3d->file_content[value]);
 	if (cub3d->map->map == NULL)
 		return (printf("Error\n -> Can't load map.\n"), free_and_exit(cub3d));
+	if (ft_str_tab_len(cub3d->map->map) == 0)
+		return (printf("Error\n -> Empty map.\n"), free_and_exit(cub3d));
 	cub3d->map->map_height = ft_str_tab_len(cub3d->map->map);
 }

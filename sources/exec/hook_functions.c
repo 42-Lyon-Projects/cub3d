@@ -16,6 +16,7 @@
 int	close_window(t_cub3d *data)
 {
 	free_and_exit(data);
+	return (0);
 }
 
 int	key_press(int key, t_cub3d *data)
