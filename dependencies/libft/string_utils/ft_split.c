@@ -44,7 +44,7 @@ void	ft_free_split(char **words_list)
 	index = 0;
 	while (words_list && words_list[index])
 		free(words_list[index++]);
-	if (words_list !=NULL && *words_list != NULL)
+	if (words_list != NULL && *words_list != NULL)
 		free(words_list);
 }
 
