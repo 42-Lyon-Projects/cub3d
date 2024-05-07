@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 18:34:36 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 14:33:39 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 14:43:08 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,5 +131,12 @@ typedef struct s_cub3d
 	t_image				wall;
 	t_keys				keys;
 }	t_cub3d;
+
+	typedef struct s_flood
+	{
+		size_t			y;
+		size_t			x;
+		struct s_flood	*next;
+	}	t_flood;
 
 #endif

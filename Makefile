@@ -26,6 +26,7 @@ FILES = main.c						\
 		parsing/parser_utils.c		\
 		parsing/color_utils.c		\
 		parsing/map_validator.c		\
+		parsing/map_validator_utils.c		\
 		graphics_utils.c			\
 		parsing/texture_utils.c		\
 		parsing/map_parser.c		\

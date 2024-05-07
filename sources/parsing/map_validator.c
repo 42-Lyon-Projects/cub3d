@@ -3,55 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbadaire <jbadaire@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 08:45:57 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/06 14:42:53 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/06 17:14:50 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <string.h>
+#include <string_utils.h>
 #include "cub3d.h"
-#include "put_utils.h"
 
-static t_boolean	ft_isset(char c, char *set)
+static void	move_north(t_cub3d *cub3d, t_flood **flood, \
+	t_flood *temp, char **map)
 {
-	int	i;
+	size_t	y;
+	size_t	x;
 
-	i = 0;
-	while (set[i])
+	y = temp->y;
+	x = temp->x;
+	if (y > 0 && map[y])
 	{
-		if (c == set[i])
-			return (_true);
-		i++;
-	}
-	return (_false);
-}
-
-t_boolean	map_is_open(char **map)
-{
-	ssize_t	x;
-	ssize_t	y;
-
-	y = -1;
-	while (map[++y])
-	{
-		x = -1;
-		while (map[y][++x])
+		if (strlen(map[y]) >= x)
 		{
-			if (ft_isset(map[y][x], "NSEW0"))
+			if (y && !set_contains_char(map[y - 1][x], "+/"))
 			{
-				if (!map[y][x + 1] || map[y][x + 1] == ' ')
-					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
-				if (map[y + 1] == NULL || !map[y + 1][x]
-					|| map[y + 1][x] == ' ')
-					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
-				if ((x && (!map[y][x - 1] || map[y][x - 1] == ' ')) || !x)
-					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
-				if ((y && (map[y - 1] == NULL || !map[y - 1][x] \
-					|| map[y - 1][x] == ' ')) || !y)
-					return (ft_putstr_fd("Error\n -> Invalid map.\n", 2), 1);
+				y--;
+				map[y][x] = '+';
+				if (add_to_flood(flood, y, x))
+					return (free_flood(flood), free_and_exit(cub3d));
 			}
 		}
 	}
-	return (_false);
+}
+
+static void	move_south(t_cub3d *cub3d, t_flood **flood, \
+	t_flood *temp, char **map)
+{
+	size_t	y;
+	size_t	x;
+
+	y = temp->y;
+	x = temp->x;
+	if (ft_str_tab_len(map) >= y + 1 && ft_strlen(map[y]) > x)
+	{
+		if (map[y + 1] && ft_strlen(map[y + 1]) > x && map[y + 1][x])
+		{
+			if (!set_contains_char(map[y + 1][x], "+/"))
+			{
+				y++;
+				map[y][x] = '+';
+				if (add_to_flood(flood, y, x))
+					return (free_flood(flood), free_and_exit(cub3d));
+			}
+		}
+	}
+}
+
+static void	move_east(t_cub3d *cub3d, t_flood **flood, \
+	t_flood *temp, char **map)
+{
+	size_t	y;
+	size_t	x;
+
+	y = temp->y;
+	x = temp->x;
+	if (ft_str_tab_len(map) >= y && ft_strlen(map[y]) >= x)
+	{
+		if (map[y][x + 1] && !set_contains_char(map[y][x + 1], "+/"))
+		{
+			x++;
+			map[y][x] = '+';
+			if (add_to_flood(flood, y, x))
+				return (free_flood(flood), free_and_exit(cub3d));
+		}
+	}
+}
+
+static void	move_west(t_cub3d *cub3d, t_flood **flood, \
+	t_flood *temp, char **map)
+{
+	size_t	y;
+	size_t	x;
+
+	y = temp->y;
+	x = temp->x;
+	if (ft_str_tab_len(map) >= y && ft_strlen(map[y]) >= x && x > 0)
+	{
+		if (x && !set_contains_char(map[y][x - 1], "+/"))
+		{
+			x--;
+			map[y][x] = '+';
+			if (add_to_flood(flood, y, x))
+				return (free_flood(flood), free_and_exit(cub3d));
+		}
+	}
+}
+
+void	floodfill(t_cub3d *cub3d, char **map)
+{
+	t_flood	*flood;
+	t_flood	*new_flood;
+	t_flood	*temp;
+
+	flood = NULL;
+	first_position(cub3d, &flood, map);
+	while (flood)
+	{
+		temp = flood;
+		new_flood = NULL;
+		while (temp)
+		{
+			move_east(cub3d, &new_flood, temp, map);
+			move_south(cub3d, &new_flood, temp, map);
+			move_west(cub3d, &new_flood, temp, map);
+			move_north(cub3d, &new_flood, temp, map);
+			temp = temp->next;
+		}
+		free_flood(&flood);
+		flood = new_flood;
+	}
 }
