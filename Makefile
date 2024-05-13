@@ -6,7 +6,7 @@
 #    By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/24 20:52:05 by luynagda          #+#    #+#              #
-#    Updated: 2024/05/06 14:25:19 by lunagda          ###   ########.fr        #
+#    Updated: 2024/05/13 15:26:41 by lunagda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ BUILD_DIRECTORY = ./build/
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -c -g3 -MD -O2
+FLAGS = -Wall -Werror -Wextra -c -g3 -MD
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
 $(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT) $(MLX)
