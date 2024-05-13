@@ -6,7 +6,7 @@
 /*   By: lunagda <lunagda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 19:09:26 by jbadaire          #+#    #+#             */
-/*   Updated: 2024/05/07 13:34:41 by lunagda          ###   ########.fr       */
+/*   Updated: 2024/05/13 15:37:25 by jbadaire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,15 @@ int	init_graphics_part(t_cub3d *cub3d)
 	cub3d->ceiling_color = -1;
 	cub3d->floor_color = -1;
 	index = load_graphics_properties(cub3d, 0, &limiter);
+	if (ft_str_tab_len(cub3d->file_content) == 0)
+		return (printf("Error \n -> No file content \n"), \
+			free_and_exit(cub3d), -1);
 	if (limiter != 6 || !textures_has_correctly_loaded(cub3d) || \
 		cub3d->ceiling_color == -1 || cub3d->floor_color == -1)
-		return (printf("Error \n -> Textures error \n"),
+	{
+		return (printf("Error \n -> Textures error \n"), \
 			free_and_exit(cub3d), -1);
+	}
 	if (index == -1)
 		return (free_and_exit(cub3d), -1);
 	return (index);

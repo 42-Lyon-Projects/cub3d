@@ -46,7 +46,7 @@ BUILD_DIRECTORY = ./build/
 
 CC = gcc
 
-FLAGS = -Wall -Werror -Wextra -c -g3 -MD -O2
+FLAGS = -Wall -Werror -Wextra -c -g3 -MD
 OBJS = $(addprefix $(BUILD_DIRECTORY), $(FILES:.c=.o))
 
 $(NAME): $(BUILD_DIRECTORY) $(OBJS) | $(LIBFT) $(MLX)

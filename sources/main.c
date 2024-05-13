@@ -33,6 +33,7 @@ static void	init_null(t_cub3d *cub3d)
 	cub3d->img.img = NULL;
 	cub3d->mlx = NULL;
 	cub3d->window = NULL;
+	cub3d->file_content = NULL;
 	if (MOVE_SPEED >= 1)
 	{
 		printf("Error\n -> MOVE_SPEED must be less than 1.\n");
@@ -86,7 +87,13 @@ int	main(int argc, char **argv)
 
 void	free_and_exit(t_cub3d *cub3d)
 {
-	ft_free_split(cub3d->file_content);
+	if (cub3d->file_content)
+	{
+		if (ft_str_tab_len(cub3d->file_content) == 0)
+			free(cub3d->file_content);
+		else
+			ft_free_split(cub3d->file_content);
+	}
 	if (ft_str_tab_len(cub3d->map->map) == 0)
 		free(cub3d->map->map);
 	else
