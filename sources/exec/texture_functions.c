@@ -70,6 +70,8 @@ void	texture_prep(t_cub3d *data, t_dda *dda, t_ray *ray)
 	}
 	if (data->wall_x != floor(data->wall_x))
 		data->wall_x -= floor(data->wall_x);
+	else
+		data->wall_x = 1.00;
 }
 
 int	get_pixel_color(t_cub3d *data, int x, int y)
